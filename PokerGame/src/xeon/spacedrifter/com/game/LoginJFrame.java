@@ -16,12 +16,12 @@ public class LoginJFrame extends JFrame implements MouseListener {
     static ArrayList<User> allUsers = new ArrayList<>();
 
     static {
-        allUsers.add(new User("zhangsan", "123"));
-        allUsers.add(new User("lisi", "1234"));
+        allUsers.add(new User("alice", "123"));
+        allUsers.add(new User("bob", "1234"));
     }
 
-    JButton loginJButton = new JButton();
-    JButton registerJButton = new JButton();
+    JButton loginJButton = new JButton("Login");
+    JButton registerJButton = new JButton("Register");
     JTextField usernameJTextField = new JTextField();
     JPasswordField passwordJPasswordField = new JPasswordField();
     JTextField captchaJTextField = new JTextField();
@@ -34,7 +34,7 @@ public class LoginJFrame extends JFrame implements MouseListener {
     }
 
     public void initJFrame() {
-        this.setSize(633, 423);
+        this.setSize(600, 350);
         this.setTitle("Poker Game Login Page");
         this.setDefaultCloseOperation(3); //when close, close all windows
         this.setLocationRelativeTo(null); //center the window
@@ -48,11 +48,11 @@ public class LoginJFrame extends JFrame implements MouseListener {
         usernameJlabel.setForeground(Color.white);
         Font usernameFont = new Font(null, 1, 16);
         usernameJlabel.setFont(usernameFont);
-        usernameJlabel.setBounds(140, 55, 55,22);
+        usernameJlabel.setBounds(120, 50, 100,30);
         this.getContentPane().add(usernameJlabel);
 
         //2.add username textfield
-        usernameJTextField.setBounds(223, 46, 200, 30);
+        usernameJTextField.setBounds(250, 50, 200, 30);
         this.getContentPane().add(usernameJTextField);
 
         //3.add password label
@@ -60,11 +60,11 @@ public class LoginJFrame extends JFrame implements MouseListener {
         passwordJLabel.setForeground(Color.white);
         Font passwordFont = new Font(null, 1, 16);
         passwordJLabel.setFont(passwordFont);
-        passwordJLabel.setBounds(197, 95, 40, 22);
+        passwordJLabel.setBounds(120, 100, 100, 30);
         this.getContentPane().add(passwordJLabel);
 
         //4.add password textfield
-        passwordJPasswordField.setBounds(263, 87, 160, 30);
+        passwordJPasswordField.setBounds(250, 100, 200, 30);
         this.getContentPane().add(passwordJPasswordField);
 
         //5.add captcha label
@@ -72,11 +72,11 @@ public class LoginJFrame extends JFrame implements MouseListener {
         captchaJLabel.setForeground(Color.white);
         Font captchaFont = new Font(null, 1, 16);
         captchaJLabel.setFont(captchaFont);
-        captchaJLabel.setBounds(215, 142, 55, 22);
+        captchaJLabel.setBounds(120, 150, 100, 30);
         this.getContentPane().add(captchaJLabel);
 
         //6.add captcha textfield
-        captchaJTextField.setBounds(291, 133, 100, 30);
+        captchaJTextField.setBounds(250, 150, 100, 30);
         this.getContentPane().add(captchaJTextField);
 
         //7.add right captcha label
@@ -85,16 +85,18 @@ public class LoginJFrame extends JFrame implements MouseListener {
         Font rightCaptchaFont = new Font(null, 1, 15);
         rightCaptchaJLabel.setFont(rightCaptchaFont);
         rightCaptchaJLabel.addMouseListener(this);
-        rightCaptchaJLabel.setBounds(400, 133, 100, 30);
+        rightCaptchaJLabel.setBounds(390, 150, 100, 30);
         this.getContentPane().add(rightCaptchaJLabel);
 
         //8.add login button
-        loginJButton.setBounds(123, 310, 128, 47);
+        loginJButton.setBounds(120, 220, 100, 50);
+        loginJButton.setContentAreaFilled(false);
         loginJButton.addMouseListener(this);
         this.getContentPane().add(loginJButton);
 
         //9.add register button
-        registerJButton.setBounds(256, 310, 128, 47);
+        registerJButton.setBounds(350, 220, 100, 50);
+        registerJButton.setContentAreaFilled(false);
         registerJButton.addMouseListener(this);
         this.getContentPane().add(registerJButton);
 
@@ -146,21 +148,17 @@ public class LoginJFrame extends JFrame implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-
     }
 }
