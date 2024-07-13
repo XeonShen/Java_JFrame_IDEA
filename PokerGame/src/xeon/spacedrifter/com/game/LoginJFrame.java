@@ -1,5 +1,4 @@
 package xeon.spacedrifter.com.game;
-
 import xeon.spacedrifter.com.domain.User;
 import xeon.spacedrifter.com.util.CaptchaGenerator;
 
@@ -7,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.geom.RoundRectangle2D;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.jar.JarEntry;
@@ -34,7 +34,7 @@ public class LoginJFrame extends JFrame implements MouseListener {
     }
 
     public void initJFrame() {
-        this.setSize(600, 350);
+        this.setSize(400, 300);
         this.setTitle("Poker Game Login Page");
         this.setDefaultCloseOperation(3); //when close, close all windows
         this.setLocationRelativeTo(null); //center the window
@@ -45,38 +45,38 @@ public class LoginJFrame extends JFrame implements MouseListener {
     public void initView() {
         //1.add username label
         JLabel usernameJlabel = new JLabel("Username");
-        usernameJlabel.setForeground(Color.white);
+        usernameJlabel.setForeground(Color.black);
         Font usernameFont = new Font(null, 1, 16);
         usernameJlabel.setFont(usernameFont);
-        usernameJlabel.setBounds(120, 50, 100,30);
+        usernameJlabel.setBounds(50, 30, 100,30);
         this.getContentPane().add(usernameJlabel);
 
         //2.add username textfield
-        usernameJTextField.setBounds(250, 50, 200, 30);
+        usernameJTextField.setBounds(140, 30, 200, 30);
         this.getContentPane().add(usernameJTextField);
 
         //3.add password label
         JLabel passwordJLabel = new JLabel("Password");
-        passwordJLabel.setForeground(Color.white);
+        passwordJLabel.setForeground(Color.black);
         Font passwordFont = new Font(null, 1, 16);
         passwordJLabel.setFont(passwordFont);
-        passwordJLabel.setBounds(120, 100, 100, 30);
+        passwordJLabel.setBounds(50, 80, 100, 30);
         this.getContentPane().add(passwordJLabel);
 
         //4.add password textfield
-        passwordJPasswordField.setBounds(250, 100, 200, 30);
+        passwordJPasswordField.setBounds(140, 80, 200, 30);
         this.getContentPane().add(passwordJPasswordField);
 
         //5.add captcha label
         JLabel captchaJLabel = new JLabel("CAPTCHA");
-        captchaJLabel.setForeground(Color.white);
+        captchaJLabel.setForeground(Color.black);
         Font captchaFont = new Font(null, 1, 16);
         captchaJLabel.setFont(captchaFont);
-        captchaJLabel.setBounds(120, 150, 100, 30);
+        captchaJLabel.setBounds(50, 130, 100, 30);
         this.getContentPane().add(captchaJLabel);
 
         //6.add captcha textfield
-        captchaJTextField.setBounds(250, 150, 100, 30);
+        captchaJTextField.setBounds(140, 130, 100, 30);
         this.getContentPane().add(captchaJTextField);
 
         //7.add right captcha label
@@ -85,17 +85,17 @@ public class LoginJFrame extends JFrame implements MouseListener {
         Font rightCaptchaFont = new Font(null, 1, 15);
         rightCaptchaJLabel.setFont(rightCaptchaFont);
         rightCaptchaJLabel.addMouseListener(this);
-        rightCaptchaJLabel.setBounds(390, 150, 100, 30);
+        rightCaptchaJLabel.setBounds(280, 130, 100, 30);
         this.getContentPane().add(rightCaptchaJLabel);
 
         //8.add login button
-        loginJButton.setBounds(120, 220, 100, 50);
+        loginJButton.setBounds(50, 190, 100, 40);
         loginJButton.setContentAreaFilled(false);
         loginJButton.addMouseListener(this);
         this.getContentPane().add(loginJButton);
 
         //9.add register button
-        registerJButton.setBounds(350, 220, 100, 50);
+        registerJButton.setBounds(240, 190, 100, 40);
         registerJButton.setContentAreaFilled(false);
         registerJButton.addMouseListener(this);
         this.getContentPane().add(registerJButton);
