@@ -1,4 +1,6 @@
 package xeon.spacedrifter.com.game;
+
+import cn.hutool.core.io.FileUtil;
 import xeon.spacedrifter.com.domain.User;
 import xeon.spacedrifter.com.util.CaptchaGenerator;
 
@@ -6,19 +8,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.geom.RoundRectangle2D;
 import java.util.ArrayList;
-import java.util.Objects;
-import java.util.jar.JarEntry;
+import java.util.List;
 
 public class LoginJFrame extends JFrame implements MouseListener {
 
-    static ArrayList<User> allUsers = new ArrayList<>();
-
-    static {
-        allUsers.add(new User("alice", "123"));
-        allUsers.add(new User("bob", "1234"));
-    }
+    ArrayList<User> allUserInfo = new ArrayList<>();
 
     JButton loginJButton = new JButton("Login");
     JButton registerJButton = new JButton("Register");
@@ -28,9 +23,21 @@ public class LoginJFrame extends JFrame implements MouseListener {
     JLabel rightCaptchaJLabel = new JLabel();
 
     public LoginJFrame() {
+        readUserInfo();
         initJFrame();
         initView();
         this.setVisible(true);
+    }
+
+
+
+    public void readUserInfo() {
+        List<String> userInfoEntry = FileUtil.readUtf8Lines("xeon/spacedrifter/com/userinfo.txt");
+        for (String s : userInfoEntry) {
+            String username = s.split("&")[0].split("=")[1];
+            String password = s.split("&")[1].split("=")[1];
+            allUserInfo.add(new User(username, password));
+        }
     }
 
     public void initJFrame() {
@@ -48,7 +55,7 @@ public class LoginJFrame extends JFrame implements MouseListener {
         usernameJlabel.setForeground(Color.black);
         Font usernameFont = new Font(null, 1, 16);
         usernameJlabel.setFont(usernameFont);
-        usernameJlabel.setBounds(50, 30, 100,30);
+        usernameJlabel.setBounds(50, 30, 100, 30);
         this.getContentPane().add(usernameJlabel);
 
         //2.add username textfield
@@ -115,6 +122,8 @@ public class LoginJFrame extends JFrame implements MouseListener {
         jDialog.setVisible(true);
     }
 
+
+
     @Override
     public void mouseClicked(MouseEvent e) {
         Object obj = e.getSource();
@@ -133,14 +142,15 @@ public class LoginJFrame extends JFrame implements MouseListener {
             }
 
             User userInfo = new User(usernameJTextField.getText(), passwordJPasswordField.getText());
-            if (allUsers.contains(userInfo)) {
+            if (allUserInfo.contains(userInfo)) {
                 this.setVisible(false); //close this window
                 new GameJFrame(); //open game window
             } else {
                 showJDialog("Username or Password is wrong");
             }
         } else if (obj == registerJButton) {
-            System.out.println("register button is pressed");
+            this.setVisible(false);
+            new RegisterJFrame(allUserInfo);
         } else if (obj == rightCaptchaJLabel) {
             rightCaptchaJLabel.setText(CaptchaGenerator.getCaptcha());
         }

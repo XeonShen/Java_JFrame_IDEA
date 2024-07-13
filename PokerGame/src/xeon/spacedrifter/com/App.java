@@ -6,6 +6,6 @@ import xeon.spacedrifter.com.game.RegisterJFrame;
 
 public class App {
     public static void main(String[] args) {
-        new RegisterJFrame();
+        new LoginJFrame();
     }
 }
